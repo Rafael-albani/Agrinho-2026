@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRO_FORTE // SUSTENTABILIDADE_SISTEMICA v10.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00FF33;
+            --matrix-black: #000000;
+            --dark-bg: #020502;
+            --glow: rgba(0, 255, 51, 0.4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--matrix-black);
+            color: var(--neon-green);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* === CRT + SCANLINES === */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent 50%, rgba(0,0,0,0.4) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.03), rgba(0,0,255,0.03));
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: scan 6s linear infinite;
+            opacity: 0.75;
+        }
+        @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+        .wrapper {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* GLITCH MASTER */
+        .glitch {
+            font-size: 5.5rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            position: relative;
+            text-shadow: 0 0 20px var(--neon-green);
+            animation: glitch-skew 4s infinite linear alternate;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00ffff;
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            10% { transform: skew(5deg, 2deg); }
+            20% { transform: skew(-5deg, -2deg); }
+        }
+        @keyframes glitch-anim { 0% { clip: rect(20px, 9999px, 60px, 0); } 100% { clip: rect(80px, 9999px, 120px, 0); } }
+        @keyframes glitch-anim2 { 0% { clip: rect(40px, 9999px, 90px, 0); } 100% { clip: rect(10px, 9999px, 50px, 0); } }
+
+        .subtitle {
+            font-size: 1.4rem;
+            letter-spacing: 12px;
+            opacity: 0.85;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .terminal-bar {
+            background: rgba(0,255,51,0.1);
+            border: 1px solid var(--neon-green);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* MATRIX RAIN BACKGROUND */
+        #matrix {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 120px;
+            position: relative;
+        }
+        h2 {
+            font-size: 2.2rem;
+            border-left: 6px solid var(--neon-green);
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+        .system-node {
+            border: 2px solid var(--neon-green);
+            padding: 35px;
+            background: rgba(5,10,5,0.95);
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .system-node::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 25px; height: 25px;
+            border-top: 5px solid var(--neon-green);
+            border-left: 5px solid var(--neon-green);
+        }
+        .system-node:hover {
+            transform: translateY(-15px) scale(1.04);
+            box-shadow: 0 0 60px var(--glow);
+            background: var(--neon-green);
+            color: #000;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.97);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            border: 3px solid var(--neon-green);
+            background: #020502;
+            padding: 50px;
+            max-width: 720px;
+            box-shadow: 0 0 80px var(--neon-green);
+        }
+
+        /* INTERACTIVE TERMINAL */
+        #terminal {
+            background: #000;
+            border: 2px solid var(--neon-green);
+            padding: 20px;
+            font-size: 1rem;
+            height: 320px;
+            overflow-y: auto;
+            margin-top: 30px;
+            box-shadow: inset 0 0 30px rgba(0,255,51,0.2);
+        }
+        .terminal-input {
+            display: flex;
+            margin-top: 15px;
+        }
+        .terminal-input input {
+            background: transparent;
+            border: none;
+            color: var(--neon-green);
+            font-family: inherit;
+            flex: 1;
+            outline: none;
+        }
+
+        .btn-terminal {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 16px 40px;
+            margin: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-terminal:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+        .particles { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:3; }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="wrapper">
+        <div class="terminal-bar">
+            <div>HOST: AGRO.FORTE.SYS // v10.0</div>
+            <div>LOCATION: CURITIBA, PR • LAT -25.4284 • LON -49.2733</div>
+            <div>STATUS: <span style="color:#00ff33;">● ONLINE • REGENERATING</span></div>
+        </div>
+
+        <header style="text-align:center; margin-bottom:80px;">
+            <h1 class="glitch" data-text="AGRO FORTE">AGRO FORTE</h1>
+            <p class="subtitle">SUSTENTABILIDADE REGENERATIVA • NET-ZERO • v10.0</p>
+        </header>
+
+        <!-- MANIFESTO -->
+        <section>
+            <h2>> DIRETRIZ_GERAL</h2>
+            <p style="font-size:1.35rem; max-width:900px; margin:0 auto; text-align:justify;">
+                A tecnologia não veio para dominar a terra.<br>
+                Veio para decifrá-la. O Agro Forte é a fusão perfeita entre biologia ancestral e inteligência computacional de ponta.
+            </p>
+        </section>
+
+        <!-- SYSTEMS -->
+        <section>
+            <h2>> SISTEMAS OPERACIONAIS</h2>
+            <div class="system-grid">
+                <div class="system-node" onclick="showModal(1)">
+                    <div style="font-size:0.8rem; border:1px solid var(--neon-green); display:inline-block; padding:4px 12px; margin-bottom:20px;">SYS_01</div>
+                    <h3>DRONES + IA MULTIESPECTRAL</h3>
+                    <p>Monitoramento planta-por-planta em tempo real. Detecção precoce de pragas, estresse hídrico e otimização de carbono.</p>
+                </div>
+                <div class="system-node" onclick="showModal(2)">
+                    <div style="font-size:0.8rem; border:1px solid var(--neon-green); display:inline-block; padding:4px 12px; margin-bottom:20px;">SYS_02</div>
+                    <h3>BIO-REGENERAÇÃO TOTAL</h3>
+                    <p>Substituição completa de químicos por bioinsumos vivos. Rotação algorítmica + micorrizas otimizadas.</p>
+                </div>
+                <div class="system-node" onclick="showModal(3)">
+                    <div style="font-size:0.8rem; border:1px solid var(--neon-green); display:inline-block; padding:4px 12px; margin-bottom:20px;">SYS_03</div>
+                    <h3>BLOCKCHAIN NET-ZERO</h3>
+                    <p>Rastreabilidade total da semente ao prato. Créditos de carbono verificados e neutralização automática.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMINAL INTERATIVO -->
+        <section>
+            <h2>> TERMINAL OPERACIONAL</h2>
+            <div id="terminal">
+                <div id="terminal-output">Bem-vindo ao Agro Forte OS v10.0<br>> Sistema regenerativo carregado.<br>> Aguardando comando...</div>
+            </div>
+            <div class="terminal-input">
+                <span>&gt;</span>
+                <input type="text" id="cmd" placeholder="Digite um comando (ex: status, impacto, ajuda)" onkeypress="if(event.key==='Enter') runCommand()">
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer style="text-align:center; border-top:2px double var(--neon-green); padding-top:50px;">
+            <p>// CODE COMPILED SUCCESSFULLY • MISSION: REGENERATE THE PLANET</p>
+            <div style="margin:40px 0;">
+                <button class="btn-terminal" onclick="window.location.href='#'">ACESSAR GITHUB</button>
+                <button class="btn-terminal" onclick="alert('Solicitação enviada. Equipe entrará em contato em breve.')">CONTATO.EXE</button>
+                <button class="btn-terminal" onclick="showModal(4)">VER IMPACTO REAL</button>
+            </div>
+            <p style="opacity:0.6; font-size:0.9rem;">© 2026 AGRO FORTE • FEITO PARA QUEM QUER PRODUZIR MAIS E DESTRUIR MENOS</p>
+        </footer>
+    </div>
+
+    <!-- MODALS -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title" style="margin-bottom:25px;"></h2>
+            <p id="modal-text"></p>
+            <button onclick="closeModal()" class="btn-terminal" style="margin-top:40px;">FECHAR [ESC]</button>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Rain
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+
+        const chars = "01アイウエオアグアフォルテ田地土水火木金土🌱🌾🚜🌍";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF33';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+
+        // Modal
+        function showModal(id) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+
+            if (id === 1) {
+                title.textContent = "SYS_01 — DRONES + IA";
+                text.textContent = "Rede de drones autônomos com câmeras multiespectrais e IA treinada em milhões de hectares. Detecta problemas 7-10 dias antes dos métodos tradicionais.";
+            } else if (id === 2) {
+                title.textContent = "SYS_02 — BIO-REGENERAÇÃO";
+                text.textContent = "Microorganismos selecionados geneticamente + rotação preditiva. Já recuperamos mais de 2400 hectares de solo degradado com +38% de matéria orgânica.";
+            } else if (id === 3) {
+                title.textContent = "SYS_03 — BLOCKCHAIN NET-ZERO";
+                text.textContent = "Cada quilo produzido tem sua pegada de carbono rastreada em blockchain. Neutralização automática via projetos de reflorestamento nativo.";
+            } else if (id === 4) {
+                title.textContent = "IMPACTO REAL 2025-2026";
+                text.textContent = "• +41% produtividade\n• -67% uso de água\n• -92% agrotóxicos\n• 18.400 toneladas de CO₂ sequestradas";
+            }
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+        }
+
+        // Terminal
+        function runCommand() {
+            const input = document.getElementById('cmd');
+            const output = document.getElementById('terminal-output');
+            const cmd = input.value.trim().toLowerCase();
+
+            output.innerHTML += `<br>> ${input.value}`;
+            
+            if (cmd === "status") {
+                output.innerHTML += `<br>STATUS: TODOS OS SISTEMAS OPERACIONAIS • REGENERAÇÃO ATIVA`;
+            } else if (cmd === "impacto" || cmd === "impact") {
+                output.innerHTML += `<br>IMPACTO 2026: 18400t CO₂ sequestradas • Solo +38% mais vivo`;
+            } else if (cmd === "ajuda" || cmd === "help") {
+                output.innerHTML += `<br>Comandos disponíveis: status, impacto, drones, bio, netzero`;
+            } else if (cmd === "drones") {
+                output.innerHTML += `<br>45 drones ativos • 1247 hectares monitorados hoje`;
+            } else {
+                output.innerHTML += `<br>Comando desconhecido. Digite "ajuda"`;
+            }
+
+            output.scrollTop = output.scrollHeight;
+            input.value = '';
+        }
+
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (e.key === "Escape") closeModal();
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+        });
+    </script>
+</body>
+</html>
