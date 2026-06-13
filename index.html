@@ -3,287 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Forte | Agricultura Forte e Sustentável</title>
+    <title>Agro Forte • Agricultura Sustentável do Futuro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --green-primary: #15803d;
+            --green-light: #86efac;
+            --green: #4ade80;
             --green-dark: #166534;
-            --green-light: #4ade80;
         }
-        
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system_ui, sans-serif;
         }
-        
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://source.unsplash.com/random/1920x1080/?farm,agriculture');
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(22, 101, 52, 0.65), rgba(22, 101, 52, 0.75)), 
+                             url('https://source.unsplash.com/random/2000x1200/?sustainable,farm,soybean,green');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
-        
-        .nav-link {
-            transition: all 0.3s ease;
+        .section-title {
+            position: relative;
         }
-        
-        .nav-link:hover {
-            color: #4ade80;
-            transform: translateY(-2px);
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: #4ade80;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 9999px;
         }
-        
-        .card {
+        .card-hover {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 30px 60px -15px rgb(134 239 172 / 0.3);
         }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--green-light);
+        .stat {
+            transition: all 0.6s ease;
         }
-        
-        .leaf-bg {
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(74, 222, 128, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(74, 222, 128, 0.15) 0%, transparent 50%);
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #4ade80;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white text-zinc-800 overflow-x-hidden">
+
     <!-- NAVBAR -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-green-700 rounded-2xl flex items-center justify-center text-white text-3xl">
-                        🌱
-                    </div>
-                    <div>
-                        <h1 class="text-3xl font-bold text-green-700 tracking-tight">Agro Forte</h1>
-                        <p class="text-xs text-green-600 -mt-1">Fazendo o campo crescer</p>
-                    </div>
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-4xl shadow-inner">
+                    🌱
                 </div>
-                
-                <div class="hidden md:flex items-center gap-8 text-lg font-medium">
-                    <a href="#home" class="nav-link text-green-800">Início</a>
-                    <a href="#sobre" class="nav-link text-green-800">Sobre</a>
-                    <a href="#produtos" class="nav-link text-green-800">Soluções</a>
-                    <a href="#impacto" class="nav-link text-green-800">Impacto</a>
-                    <a href="#contato" class="nav-link text-green-800">Contato</a>
+                <div>
+                    <span class="text-3xl font-bold tracking-tight text-emerald-800">Agro Forte</span>
                 </div>
-                
-                <button onclick="toggleMenu()" 
-                        class="md:hidden text-3xl text-green-700">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-            <div class="flex flex-col px-6 py-6 gap-4 text-lg">
-                <a href="#home" class="nav-link">Início</a>
-                <a href="#sobre" class="nav-link">Sobre</a>
-                <a href="#produtos" class="nav-link">Soluções</a>
-                <a href="#impacto" class="nav-link">Impacto</a>
-                <a href="#contato" class="nav-link">Contato</a>
+            
+            <div class="hidden md:flex items-center gap-10 text-base font-medium">
+                <a href="#sobre" class="nav-link text-zinc-700 hover:text-emerald-700 transition-colors">Sobre</a>
+                <a href="#solucoes" class="nav-link text-zinc-700 hover:text-emerald-700 transition-colors">Soluções</a>
+                <a href="#sustentabilidade" class="nav-link text-zinc-700 hover:text-emerald-700 transition-colors">Sustentabilidade</a>
+                <a href="#impacto" class="nav-link text-zinc-700 hover:text-emerald-700 transition-colors">Impacto</a>
+                <a href="#contato" class="nav-link text-zinc-700 hover:text-emerald-700 transition-colors">Contato</a>
             </div>
+            
+            <a href="#contato" 
+               class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3.5 rounded-2xl font-semibold flex items-center gap-2 transition-all shadow-md">
+                <i class="fas fa-leaf"></i>
+                <span>Iniciar Parceria</span>
+            </a>
         </div>
     </nav>
 
     <!-- HERO -->
-    <section id="home" class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                    AGRO <span class="text-green-400">FORTE</span><br>
-                    O FUTURO DO CAMPO
-                </h2>
-                <p class="text-2xl md:text-3xl mb-10 text-green-100">
-                    Tecnologia, inovação e sustentabilidade para uma agricultura mais forte.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                    <button onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })" 
-                            class="bg-green-600 hover:bg-green-500 text-white text-xl px-10 py-5 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all">
-                        <i class="fas fa-seedling"></i>
-                        CONHEÇA NOSSAS SOLUÇÕES
-                    </button>
-                    <button onclick="document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' })" 
-                            class="border-2 border-white hover:bg-white hover:text-green-800 text-xl px-10 py-5 rounded-2xl font-semibold transition-all">
-                        Ver Produtos
-                    </button>
-                </div>
+    <section id="home" class="hero h-screen flex items-center text-white relative">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full mb-6 text-sm font-medium">
+                <span class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></span>
+                AGRICULTURA REGENERATIVA NO BRASIL
             </div>
             
-            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <i class="fas fa-chevron-down text-4xl"></i>
+            <h1 class="heading-font text-6xl md:text-7xl font-bold leading-none mb-8 tracking-tighter">
+                O FUTURO<br>SUSTENTÁVEL<br>COMEÇA AQUI
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-xl md:text-2xl mb-12 text-emerald-100">
+                Tecnologia de ponta + práticas regenerativas para produzir mais, preservar o solo e construir um legado para as próximas gerações.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" 
+                        class="bg-white text-emerald-800 px-10 py-5 rounded-3xl font-semibold text-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-xl">
+                    <i class="fas fa-handshake"></i>
+                    AGENDAR DEMONSTRAÇÃO GRATUITA
+                </button>
+                <button onclick="document.getElementById('sustentabilidade').scrollIntoView({behavior:'smooth'})" 
+                        class="border-2 border-white px-10 py-5 rounded-3xl font-semibold text-lg hover:bg-white/10 transition-all">
+                    Conheça nossa visão
+                </button>
             </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/80 animate-bounce">
+            <span class="text-xs tracking-widest">ROLE PARA BAIXO</span>
+            <i class="fas fa-chevron-down text-3xl mt-2"></i>
         </div>
     </section>
 
     <!-- SOBRE -->
-    <section id="sobre" class="py-24 bg-white">
+    <section id="sobre" class="py-28 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">Desde 2018</span>
-                    <h2 class="text-5xl font-bold leading-tight mb-8 text-green-800">
-                        Fortalecendo o agronegócio brasileiro com tecnologia verde
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-7">
+                    <span class="uppercase tracking-widest text-emerald-600 font-medium">Desde 2018 • Brasil</span>
+                    <h2 class="heading-font text-6xl font-bold text-emerald-900 mt-4 leading-tight">
+                        Tecnologia que respeita a terra e multiplica resultados
                     </h2>
-                    <p class="text-xl text-gray-600 leading-relaxed mb-8">
-                        A Agro Forte nasceu com o propósito de entregar soluções inovadoras que aumentam a produtividade, 
-                        reduzem custos e promovem a sustentabilidade no campo.
+                    <p class="mt-8 text-xl text-zinc-600 max-w-2xl">
+                        A Agro Forte une inovação tecnológica com práticas sustentáveis para ajudar produtores brasileiros a aumentar a produtividade enquanto regeneram o solo e reduzem o impacto ambiental.
                     </p>
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-4xl">🌾</div>
-                            <div>
-                                <div class="font-bold text-3xl text-green-700">+12k</div>
-                                <div class="text-gray-600">Hectares monitorados</div>
-                            </div>
+                    <div class="mt-12 grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-5xl font-bold text-emerald-500">14k+</div>
+                            <div class="text-zinc-500 mt-1">Hectares monitorados</div>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-4xl">👨‍🌾</div>
-                            <div>
-                                <div class="font-bold text-3xl text-green-700">850+</div>
-                                <div class="text-gray-600">Produtores atendidos</div>
-                            </div>
+                        <div>
+                            <div class="text-5xl font-bold text-emerald-500">950+</div>
+                            <div class="text-zinc-500 mt-1">Produtores parceiros</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-bold text-emerald-500">42%</div>
+                            <div class="text-zinc-500 mt-1">Média de redução de insumos</div>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <img src="https://source.unsplash.com/random/800x600/?tractor,field" 
-                         class="rounded-3xl shadow-2xl" alt="Campo Agro Forte">
-                    <div class="absolute -bottom-6 -right-6 bg-white p-8 rounded-3xl shadow-xl">
-                        <div class="text-green-700 text-6xl font-bold mb-2">98%</div>
-                        <div class="font-medium">de satisfação dos nossos clientes</div>
-                    </div>
+                <div class="md:col-span-5">
+                    <img src="https://source.unsplash.com/random/800x900/?farmer,field,sustainable" 
+                         class="rounded-3xl shadow-2xl w-full" alt="Produtor Agro Forte">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRODUTOS / SOLUÇÕES -->
-    <section id="produtos" class="py-24 leaf-bg">
+    <!-- SOLUÇÕES -->
+    <section id="solucoes" class="py-28 bg-emerald-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold text-green-800 mb-4">Nossas Soluções</h2>
-                <p class="text-2xl text-gray-600 max-w-2xl mx-auto">Tecnologia de ponta para resultados excepcionais</p>
+                <span class="text-emerald-600 font-medium">TECNOLOGIA INTELIGENTE</span>
+                <h2 class="heading-font text-5xl font-bold mt-3 text-emerald-900">Nossas Soluções</h2>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="card bg-white rounded-3xl overflow-hidden shadow-xl">
-                    <div class="h-64 bg-[url('https://source.unsplash.com/random/600x400/?drone')] bg-cover"></div>
-                    <div class="p-8">
-                        <div class="text-green-600 mb-3 font-medium">MONITORAMENTO AÉREO</div>
-                        <h3 class="text-3xl font-bold mb-4">AgroDrone Pro</h3>
-                        <p class="text-gray-600 mb-8">Mapeamento preciso, detecção de pragas e análise de solo em tempo real.</p>
-                        <button onclick="alert('Demonstração do AgroDrone iniciada! (Simulação)')" 
-                                class="w-full py-4 bg-green-700 hover:bg-green-600 text-white rounded-2xl font-semibold transition-all">
-                            Conhecer mais →
-                        </button>
-                    </div>
+                <div class="bg-white p-8 rounded-3xl card-hover shadow-xl">
+                    <img src="https://source.unsplash.com/random/600x400/?agricultural,drone" class="w-full h-56 object-cover rounded-2xl mb-6" alt="AgroDrone">
+                    <h3 class="text-2xl font-semibold mb-3">AgroDrone Vision</h3>
+                    <p class="text-zinc-600">Mapeamento aéreo de alta precisão, detecção precoce de pragas e aplicação variável de defensivos.</p>
+                    <div class="mt-8 text-emerald-600 font-medium flex items-center gap-2">Redução de até 35% em químicos →</div>
                 </div>
                 
-                <!-- Card 2 -->
-                <div class="card bg-white rounded-3xl overflow-hidden shadow-xl">
-                    <div class="h-64 bg-[url('https://source.unsplash.com/random/600x400/?irrigation')] bg-cover"></div>
-                    <div class="p-8">
-                        <div class="text-green-600 mb-3 font-medium">IRRIGAÇÃO INTELIGENTE</div>
-                        <h3 class="text-3xl font-bold mb-4">IrrigaForte</h3>
-                        <p class="text-gray-600 mb-8">Sistema automatizado que economiza até 40% de água com sensores IoT.</p>
-                        <button onclick="alert('Simulador de economia de água carregando...')" 
-                                class="w-full py-4 bg-green-700 hover:bg-green-600 text-white rounded-2xl font-semibold transition-all">
-                            Simular economia
-                        </button>
-                    </div>
+                <div class="bg-white p-8 rounded-3xl card-hover shadow-xl">
+                    <img src="https://source.unsplash.com/random/600x400/?smart,irrigation" class="w-full h-56 object-cover rounded-2xl mb-6" alt="Irrigação">
+                    <h3 class="text-2xl font-semibold mb-3">IrrigaForte IoT</h3>
+                    <p class="text-zinc-600">Sistema de irrigação inteligente com sensores que economiza água e energia.</p>
+                    <div class="mt-8 text-emerald-600 font-medium flex items-center gap-2">Economia média de 40% de água →</div>
                 </div>
                 
-                <!-- Card 3 -->
-                <div class="card bg-white rounded-3xl overflow-hidden shadow-xl">
-                    <div class="h-64 bg-[url('https://source.unsplash.com/random/600x400/?soil')] bg-cover"></div>
-                    <div class="p-8">
-                        <div class="text-green-600 mb-3 font-medium">ANÁLISE DE SOLO</div>
-                        <h3 class="text-3xl font-bold mb-4">SoloMax IA</h3>
-                        <p class="text-gray-600 mb-8">Inteligência artificial que recomenda os melhores fertilizantes para cada talhão.</p>
-                        <button onclick="calcularSolo()" 
-                                class="w-full py-4 bg-green-700 hover:bg-green-600 text-white rounded-2xl font-semibold transition-all">
-                            Testar IA agora
-                        </button>
-                    </div>
+                <div class="bg-white p-8 rounded-3xl card-hover shadow-xl">
+                    <img src="https://source.unsplash.com/random/600x400/?soil,analysis" class="w-full h-56 object-cover rounded-2xl mb-6" alt="SoloMax">
+                    <h3 class="text-2xl font-semibold mb-3">SoloMax IA</h3>
+                    <p class="text-zinc-600">Inteligência artificial que analisa solo em tempo real e recomenda o uso exato de nutrientes.</p>
+                    <div class="mt-8 text-emerald-600 font-medium flex items-center gap-2">Preservação + produtividade →</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTERATIVO: CONTADOR DE IMPACTO -->
-    <section id="impacto" class="py-24 bg-green-800 text-white">
+    <!-- SUSTENTABILIDADE -->
+    <section id="sustentabilidade" class="py-28 bg-emerald-900 text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-4">Nosso Impacto no Campo</h2>
-                <p class="text-green-300 text-xl">Números que comprovam nossa força</p>
+                <h2 class="heading-font text-5xl font-bold">Compromisso com o Futuro Sustentável</h2>
+                <p class="mt-4 text-emerald-300 max-w-xl mx-auto">Não basta produzir. Precisamos regenerar.</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-7xl mb-6">🌍</div>
+                    <h4 class="font-semibold text-xl mb-3">Carbono Neutro</h4>
+                    <p class="text-emerald-200">Tecnologias que capturam mais carbono do que emitem.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-7xl mb-6">💧</div>
+                    <h4 class="font-semibold text-xl mb-3">Água Viva</h4>
+                    <p class="text-emerald-200">Uso consciente e preservação dos recursos hídricos.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-7xl mb-6">🌱</div>
+                    <h4 class="font-semibold text-xl mb-3">Solo Regenerado</h4>
+                    <p class="text-emerald-200">Práticas que aumentam a biodiversidade e a saúde do solo.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-7xl mb-6">👨‍🌾</div>
+                    <h4 class="font-semibold text-xl mb-3">Produtor do Futuro</h4>
+                    <p class="text-emerald-200">Capacitação e renda digna para quem trabalha no campo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACTO -->
+    <section id="impacto" class="py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="heading-font text-5xl font-bold mb-16 text-emerald-900">Impacto Real e Mensurável</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-16">
                 <div>
-                    <div id="stat1" class="stat-number">0</div>
-                    <p class="text-green-200 mt-3 text-xl">Toneladas de CO₂ evitadas</p>
+                    <div id="stat1" class="stat text-7xl font-bold text-emerald-500">0</div>
+                    <p class="mt-4 text-zinc-600 font-medium">Toneladas de CO₂ evitadas</p>
                 </div>
                 <div>
-                    <div id="stat2" class="stat-number">0</div>
-                    <p class="text-green-200 mt-3 text-xl">Produtividade média ↑</p>
+                    <div id="stat2" class="stat text-7xl font-bold text-emerald-500">0</div>
+                    <p class="mt-4 text-zinc-600 font-medium">Aumento médio de produtividade</p>
                 </div>
                 <div>
-                    <div id="stat3" class="stat-number">0</div>
-                    <p class="text-green-200 mt-3 text-xl">Hectares cultivados</p>
+                    <div id="stat3" class="stat text-7xl font-bold text-emerald-500">0</div>
+                    <p class="mt-4 text-zinc-600 font-medium">Hectares regenerados</p>
                 </div>
                 <div>
-                    <div id="stat4" class="stat-number">0</div>
-                    <p class="text-green-200 mt-3 text-xl">Produtores felizes</p>
+                    <div id="stat4" class="stat text-7xl font-bold text-emerald-500">0</div>
+                    <p class="mt-4 text-zinc-600 font-medium">Produtores impactados</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CONTATO -->
-    <section id="contato" class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6">
+    <section id="contato" class="py-28 bg-emerald-50">
+        <div class="max-w-2xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-5xl font-bold text-green-800">Vamos fortalecer seu negócio?</h2>
-                <p class="text-xl mt-4 text-gray-600">Entre em contato e agende uma demonstração gratuita</p>
+                <h2 class="heading-font text-5xl font-bold text-emerald-900">Vamos construir o futuro da sua lavoura?</h2>
+                <p class="mt-4 text-zinc-600">Preencha o formulário e nossa equipe entrará em contato em até 24 horas.</p>
             </div>
             
-            <form id="contactForm" onsubmit="enviarForm(event)" class="space-y-8">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <label class="block text-sm font-medium mb-2 text-gray-600">Nome</label>
-                        <input type="text" required class="w-full px-6 py-5 rounded-2xl border border-gray-200 focus:border-green-500 focus:outline-none text-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2 text-gray-600">Telefone / WhatsApp</label>
-                        <input type="tel" required class="w-full px-6 py-5 rounded-2xl border border-gray-200 focus:border-green-500 focus:outline-none text-lg">
-                    </div>
+            <form onsubmit="enviarForm(event)" class="space-y-8">
+                <div class="grid grid-cols-2 gap-6">
+                    <input type="text" placeholder="Nome completo" required class="w-full px-6 py-5 rounded-2xl border border-emerald-100 focus:border-emerald-400 outline-none bg-white">
+                    <input type="tel" placeholder="WhatsApp" required class="w-full px-6 py-5 rounded-2xl border border-emerald-100 focus:border-emerald-400 outline-none bg-white">
                 </div>
+                <input type="email" placeholder="E-mail" class="w-full px-6 py-5 rounded-2xl border border-emerald-100 focus:border-emerald-400 outline-none bg-white">
+                <textarea placeholder="Fale sobre sua propriedade e objetivos sustentáveis..." rows="5" class="w-full px-6 py-5 rounded-3xl border border-emerald-100 focus:border-emerald-400 outline-none bg-white"></textarea>
                 
-                <div>
-                    <label class="block text-sm font-medium mb-2 text-gray-600">E-mail</label>
-                    <input type="email" required class="w-full px-6 py-5 rounded-2xl border border-gray-200 focus:border-green-500 focus:outline-none text-lg">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium mb-2 text-gray-600">Mensagem (opcional)</label>
-                    <textarea rows="4" class="w-full px-6 py-5 rounded-3xl border border-gray-200 focus:border-green-500 focus:outline-none text-lg"></textarea>
-                </div>
-                
-                <button type="submit" 
-                        class="w-full bg-green-700 hover:bg-green-600 text-white py-7 rounded-3xl text-xl font-bold transition-all flex items-center justify-center gap-4">
-                    <i class="fas fa-paper-plane"></i>
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-6 rounded-3xl font-semibold text-lg transition-all shadow-lg">
                     ENVIAR MENSAGEM
                 </button>
             </form>
@@ -291,89 +284,77 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-green-900 text-green-100 py-16">
+    <footer class="bg-emerald-900 text-emerald-100 py-20">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="flex justify-center mb-8">
-                <div class="w-16 h-16 bg-green-700 rounded-3xl flex items-center justify-center text-5xl">🌱</div>
+                <div class="w-16 h-16 bg-emerald-500 rounded-3xl flex items-center justify-center text-5xl">🌱</div>
             </div>
-            <p class="text-3xl font-bold mb-2">Agro Forte</p>
-            <p class="text-green-400">Tecnologia que faz o Brasil crescer</p>
+            <p class="text-3xl font-bold">Agro Forte</p>
+            <p class="text-emerald-400 mt-2">Tecnologia • Sustentabilidade • Resultados</p>
             
-            <div class="mt-12 pt-8 border-t border-green-800 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="mt-16 pt-8 border-t border-emerald-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
                 <p>© 2026 Agro Forte - Todos os direitos reservados</p>
                 <div class="flex gap-8">
-                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">WhatsApp</a>
-                    <a href="#" class="hover:text-white transition-colors">YouTube</a>
+                    <a href="#" class="hover:text-white">Instagram</a>
+                    <a href="#" class="hover:text-white">LinkedIn</a>
+                    <a href="#" class="hover:text-white">WhatsApp</a>
                 </div>
-                <p>Feito com ❤️ para o agro brasileiro</p>
+                <p class="text-emerald-500">Feito com dedicação ao agro brasileiro</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Tailwind script already included
-        
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-        
-        // Contadores animados
-        function animateCounter(id, target, duration = 2500) {
-            let start = 0;
+        // Tailwind script already loaded
+
+        // Animated counters
+        function animateCounter(id, target, suffix = '') {
+            let count = 0;
+            const duration = 2200;
             const increment = target / (duration / 16);
             const element = document.getElementById(id);
             
             const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
+                count += increment;
+                if (count >= target) {
                     clearInterval(timer);
-                    start = target;
+                    element.textContent = target.toLocaleString('pt-BR') + suffix;
+                } else {
+                    element.textContent = Math.floor(count).toLocaleString('pt-BR') + suffix;
                 }
-                element.textContent = Math.floor(start).toLocaleString('pt-BR') + (id === 'stat2' ? '%' : '+');
             }, 16);
         }
-        
-        // Inicia contadores quando a seção fica visível
-        function startCounters() {
-            animateCounter('stat1', 12400);
-            animateCounter('stat2', 47);
-            animateCounter('stat3', 12450);
-            animateCounter('stat4', 850);
-        }
-        
-        // Observador de scroll simples
-        window.addEventListener('scroll', () => {
+
+        // Trigger counters on scroll
+        let countersStarted = false;
+        function checkScroll() {
+            if (countersStarted) return;
             const impactoSection = document.getElementById('impacto');
-            if (window.scrollY + window.innerHeight > impactoSection.offsetTop + 100) {
-                startCounters();
-                window.removeEventListener('scroll', this);
+            if (window.scrollY + window.innerHeight * 0.8 > impactoSection.offsetTop) {
+                countersStarted = true;
+                animateCounter('stat1', 18500);
+                animateCounter('stat2', 42, '%');
+                animateCounter('stat3', 14200);
+                animateCounter('stat4', 950);
             }
-        });
-        
-        // Formulário
+        }
+
+        window.addEventListener('scroll', checkScroll);
+
+        // Form handler
         function enviarForm(e) {
             e.preventDefault();
-            alert("✅ Mensagem enviada com sucesso!\n\nA Agro Forte entrará em contato em breve. Obrigado por acreditar no agro forte!");
+            alert("✅ Mensagem enviada com sucesso!\n\nA equipe Agro Forte entrará em contato em breve para discutir como podemos ajudar sua propriedade a ser mais produtiva e sustentável.");
             e.target.reset();
         }
-        
-        // Simulador SoloMax
-        function calcularSolo() {
-            const ph = Math.random() * 2 + 5;
-            alert(`SoloMax IA analisou seu solo:\n\n• pH estimado: ${ph.toFixed(1)}\n• Recomendação: Calcário + Nitrogênio balanceado\n• Produtividade projetada: +${Math.floor(Math.random()*35) + 18}%\n\nQuer uma análise completa? Fale com nosso time!`);
-        }
-        
-        // Keyboard shortcut divertido
+
+        // Keyboard shortcut
         document.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
-                document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
-            }
+            if (e.key === "Enter" && document.activeElement.tagName === "TEXTAREA") return;
         });
-        
-        // Inicialização
-        console.log("%c🚜 Agro Forte - Página pronta para nota máxima!", "color: #15803d; font-size: 18px; font-weight: bold");
+
+        // Initialize
+        console.log("%c🌱 Agro Forte - Site Premium carregado com sucesso!", "color: #4ade80; font-size: 16px; font-weight: 600");
     </script>
 </body>
 </html>
